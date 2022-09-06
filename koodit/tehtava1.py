@@ -7,20 +7,23 @@ class signalAnalyser:
         self.Fs = Fs
         self.Ts = 1/Fs
         self.t = t
-        self.xakseli = np.arange(0,t,self.Ts)       # Mitä tässä tapahtuu?
-        self.pituus = int(self.xakseli.size)        # Mitä tässä tapahtuu?
-        self.yakseli = np.zeros((1,self.pituus))    # Mitä tässä tapahtuu?
+        self.xakseli = np.arange(0,t,self.Ts)       # x akselin luonti
+        self.pituus = int(self.xakseli.size)        # x akselin pituus
+        self.yakseli = np.zeros((1,self.pituus))    # y akselin pituus
         
 
     def create(self,f):
         pii = np.pi
         t = self.xakseli
-        self.yakseli = np.cos( 2 * pii * f * t)     # Mitä tässä tapahtuu?
 
+        self.yakseli = np.cos( 2 * pii * f * t)     # akselin määritys
+        self.sinakseli = np.sin( 2 * pii * f * t)
 
     def plot(self,start,stop):
+        fig, ax = plt.subplots(2)
+        ax[0].plot(self.xakseli[start:stop],self.sinakseli[start:stop],'-*')
+        ax[1].plot(self.xakseli[start:stop],self.yakseli[start:stop],'-*')
         plt.figure(1)
-        plt.plot(self.xakseli[start:stop],self.yakseli[start:stop],'-*')
         plt.show()   
 
 if __name__ == '__main__':
