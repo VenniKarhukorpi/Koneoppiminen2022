@@ -22,7 +22,9 @@ class signalAnalyser:
     def plot(self,start,stop):
         fig, ax = plt.subplots(2)
         ax[0].plot(self.xakseli[start:stop],self.sinakseli[start:stop],'-*')
+        ax[0].set_title("Sin")
         ax[1].plot(self.xakseli[start:stop],self.yakseli[start:stop],'-*')
+        ax[1].set_title("Cos")
         plt.figure(1)
         plt.show()   
 
