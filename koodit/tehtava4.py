@@ -14,18 +14,65 @@ with Numpy array manipulations. Your tasks are the following:
 '''
 size = 256
 kuva = np.zeros((size,size,3))
-kuva[:,:,0]= np.ones((size,size))
+kuva[0:128,0:128,0]= np.ones((128,128))
+kuva[0:128,128:,1]= np.ones((128,128))
+kuva[128:,:128,2]= np.ones((128,128))
+kuva[128:,128:,0]= np.ones((128,128))*0.5
+kuva[128:,128:,1]= np.ones((128,128))*0.5
+kuva[128:,128:,2]= np.ones((128,128))*0.5
+
 plt.imshow(kuva)
 plt.show()
+
 
 '''
 Let's look at matplotlib library basic usage tutorials. There is an example
 how to create 3 figures as shown below
+'''
+
+t = np.arange(0,1,0.01)
+one = np.sin( 2 * np.pi * 1 * t)
+two = np.sin( 2 * np.pi * 2 * t)
+three = np.sin( 2 * np.pi * 3 * t)
+four = np.sin( 2 * np.pi * 4 * t)
 
 fig1 = plt.figure()  # an empty figure with no Axes
-fig2, ax = plt.subplots()  # a figure with a single Axes
-fig3, axs = plt.subplots(2, 2)  # a figure with a 2x2 grid of Axes
+fig1.suptitle('1Hz')
+plt.plot(t,one)
+plt.show()
 
+
+fig2, ax = plt.subplots()  # a figure with a single Axes
+fig2.suptitle('2Hz')
+plt.plot(t,two)
+plt.show()
+
+
+fig3, axs = plt.subplots(2, 2)  # a figure with a 2x2 grid of Axes
+fig3.set_size_inches(10,7)
+fig3.suptitle('All the Hz')
+axs[0,0].plot(t,one, color = 'red')
+axs[0,0].set_title('1Hz')
+axs[0,1].plot(t,two, color = 'Green')
+axs[0,1].set_title('2Hz')
+axs[1,0].plot(t,three, color = 'blue')
+axs[1,0].set_title('3Hz')
+axs[1,1].plot(t,four, color = 'gray')
+axs[1,1].set_title('4Hz',)
+plt.show()
+
+s=np.zeros((100,2))
+s[:,0] = two
+s[:,1] = np.power(two,2)
+
+fig4, ax = plt.subplots()  # a figure with a single Axes
+fig4.set_size_inches(10,7)
+fig4.suptitle('Matrix')
+plt.plot(t,s)
+
+plt.show()
+
+'''
 Your tasks are the following:
 1) create 4 NumPy arrays containing 1 second sine signals with 1, 2, 3, 4 Hz
     HINT:
